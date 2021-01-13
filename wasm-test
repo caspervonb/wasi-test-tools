@@ -34,7 +34,7 @@ if [ -e "$stderr_expected" ]; then
 fi
 
 status_expected="$prefix.status"
-if [ -e "$input.status" ]; then
+if [ -e "$prefix.status" ]; then
   echo $status > "$status_actual"
   diff -u "$status_expected" "$status_actual"
 elif [ ! "$status" -eq "0" ]; then
