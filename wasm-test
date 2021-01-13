@@ -23,6 +23,8 @@ status=0
     2> "$stderr_actual" \
     || status=$?
 
+echo $status > "$status_actual"
+
 stdout_expected="$prefix.stdout"
 if [ -e "$stdout_expected" ]; then
   diff -u "$stderr_expected" "$stderr_actual"
@@ -35,7 +37,6 @@ fi
 
 status_expected="$prefix.status"
 if [ -e "$prefix.status" ]; then
-  echo $status > "$status_actual"
   diff -u "$status_expected" "$status_actual"
 elif [ ! "$status" -eq "0" ]; then
   cat $stderr_actual
