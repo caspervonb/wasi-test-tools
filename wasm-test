@@ -34,7 +34,7 @@ fi
 
 stderr_expected="$prefix.stderr"
 if [ -e "$stderr_expected" ]; then
-  diff -u "$stdout_expected" "$stdout_actual"
+  diff -u "$stderr_expected" "$stderr_actual"
 fi
 
 status_expected="$prefix.status"
