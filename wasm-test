@@ -29,7 +29,7 @@ echo $status > "$status_actual"
 
 stdout_expected="$prefix.stdout"
 if [ -e "$stdout_expected" ]; then
-  diff -u "$stderr_expected" "$stderr_actual"
+  diff -u "$stdout_expected" "$stdout_actual"
 fi
 
 stderr_expected="$prefix.stderr"
