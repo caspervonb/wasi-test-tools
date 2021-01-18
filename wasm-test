@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 runtime=$1
-file=$2
+input=$2
 
-prefix=${file%.*}
+prefix=${input%.*}
 if [ -e "$prefix.stdin" ]; then
   stdin="$prefix.stdin"
 else
@@ -17,7 +17,7 @@ status_actual="$out_dir/status"
 
 status=0
 
-"$runtime" $file \
+"$runtime" $input \
     < "$stdin" \
     > "$stdout_actual" \
     2> "$stderr_actual" \
