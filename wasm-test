@@ -17,9 +17,15 @@ stdout_actual="$out_dir/stdout"
 stderr_actual="$out_dir/stderr"
 status_actual="$out_dir/status"
 
+if [ -e "$prefix.env" ]; then
+  env=$(sed -e 's/^/--env /' < "$prefix.env")
+else
+  env=""
+fi
+
 status=0
 
-"$runtime" $input \
+"$runtime" $env $input \
     < "$stdin" \
     > "$stdout_actual" \
     2> "$stderr_actual" \
