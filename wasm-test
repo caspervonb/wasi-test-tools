@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-wasm=$1
+runtime=$1
 file=$2
 
 prefix=${file%.*}
@@ -17,7 +17,7 @@ status_actual="$out_dir/status"
 
 status=0
 
-"$wasm" $file \
+"$runtime" $file \
     < "$stdin" \
     > "$stdout_actual" \
     2> "$stderr_actual" \
