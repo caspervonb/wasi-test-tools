@@ -27,6 +27,12 @@ else
   arg=""
 fi
 
+if [ -e "$input_base.dir" ]; then
+  dir="--dir $input_base.dir"
+else
+  dir=""
+fi
+
 if [ -e "$input_base.env" ]; then
   env=$(sed -e 's/^/--env /' < "$input_base.env")
 else
@@ -35,7 +41,7 @@ fi
 
 status=0
 
-"$runtime" $env "$input_base.wasm" -- $arg \
+"$runtime" $dir $env "$input_base.wasm" -- $arg \
     < "$stdin" \
     > "$stdout_actual" \
     2> "$stderr_actual" \
