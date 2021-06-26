@@ -28,7 +28,7 @@ else
 fi
 
 if [ -e "$input_base.dir" ]; then
-  dir="--dir=$input_base.dir"
+  dir="--dir $input_base.dir"
 else
   dir=""
 fi
