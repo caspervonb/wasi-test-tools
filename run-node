@@ -1,0 +1,27 @@
+#!/usr/bin/env -S node --experimental-wasi-unstable-preview1
+
+const { spawnSync } = require("child_process");
+const { readFileSync } = require("fs");
+
+const { WASI } = require("wasi");
+
+if (process.argv[2] == "-V") {
+  const result = spawnSync(process.argv[0], ["--version"], {
+    stdio: "pipe",
+    encoding: "utf-8",
+  });
+
+  process.stdout.write(`node ${result.stdout}`);
+  process.exit(result.status);
+}
+
+const wasi = new WASI({
+});
+
+const importObject = { wasi_snapshot_preview1: wasi.wasiImport };
+
+const path = process.argv[2];
+const wasm = new WebAssembly.Module(readFileSync(path));
+const instance = new WebAssembly.Instance(wasm, importObject);
+
+wasi.start(instance);
