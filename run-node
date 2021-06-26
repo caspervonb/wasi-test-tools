@@ -50,8 +50,7 @@ const wasi = new WASI(options);
 
 const importObject = { wasi_snapshot_preview1: wasi.wasiImport };
 
-const path = process.argv[2];
-const wasm = new WebAssembly.Module(readFileSync(path));
+const wasm = new WebAssembly.Module(readFileSync(inputs[0]));
 const instance = new WebAssembly.Instance(wasm, importObject);
 
 wasi.start(instance);
