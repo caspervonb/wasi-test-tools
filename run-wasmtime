@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
+if [[ $1 == "-V" ]]; then
+  exec wasmtime -V
+fi
+
 exec wasmtime run "$@" 

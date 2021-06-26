@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
+if [[ $1 == "-V" ]]; then
+  exec wasmer -V
+fi
+
 exec wasmer run "$@" 
