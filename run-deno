@@ -1,0 +1,27 @@
+#!/usr/bin/env -S deno run --allow-all --unstable --no-check
+
+import WASI from "https://deno.land/std/wasi/snapshot_preview1.ts";
+
+if (Deno.args[0] == "-V") {
+  const process = await Deno.run({
+    cmd: [
+      Deno.execPath(),
+      "-V",
+    ],
+    stdout: "inherit",
+  });
+
+  const status = await process.status();
+  Deno.exit(status.code);
+}
+
+const wasi = new WASI({
+});
+
+const importObject = { wasi_snapshot_preview1: wasi.exports };
+
+const path = Deno.args[0];
+const wasm = await WebAssembly.compile(Deno.readFileSync(path));
+const instance = await WebAssembly.instantiate(wasm, importObject);
+
+wasi.start(instance);
