@@ -1,4 +1,4 @@
-#!/usr/bin/env -S node --experimental-wasi-unstable-preview1
+#!/usr/bin/env -S node --experimental-wasi-unstable-preview1 --no-warnings
 
 const { spawnSync } = require("child_process");
 const { readFileSync } = require("fs");
