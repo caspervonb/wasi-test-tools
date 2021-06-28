@@ -41,7 +41,7 @@ fi
 
 status=0
 
-"$runtime" $dir $env "$input_base.wasm" -- $arg \
+"$runtime" "$input_base.wasm" $dir $env -- $arg \
     < "$stdin" \
     > "$stdout_actual" \
     2> "$stderr_actual" \
